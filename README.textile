@@ -32,7 +32,7 @@ p item.liking_users
 
 h2. Ruby Library
 
-google_reader's specifications are certified to run on MRI 1.9.2 and JRuby 1.6.0 (in 1.8 mode).
+google_reader's specifications are certified to run on MRI 1.9.2, MRI 1.8.7, REE 1.8.7-2011-03, Rubinius head (2011/05/03) and JRuby 1.6.0 (in 1.8 mode).
 
 h2. LICENSE
 
