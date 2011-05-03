@@ -13,7 +13,11 @@ module GoogleReader
 
     def original_id
       oid_node = id_node.attribute_with_ns("original-id", GOOGLE_ATOM_NAMESPACE)
-      oid_node ? oid_node.text : id
+      return self.id if oid_node.nil?
+
+      # Cater to JRuby + libffi
+      return self.id if oid_node.respond_to?(:null?) && oid_node.null?
+      oid_node.text
     end
 
     def title
@@ -50,6 +54,9 @@ module GoogleReader
       return false unless node
       attr = node.attribute_with_ns("unknown-author", GOOGLE_ATOM_NAMESPACE)
       return true unless attr
+
+      # Cater to JRuby + libffi
+      return true if attr.respond_to?(:null?) && attr.null?
       attr.text != "true"
     end
 
@@ -59,10 +66,10 @@ module GoogleReader
 
     def source
       node = @entry.search("source").first
-      OpenStruct.new(:title     => unhtml(node.search("title").first.text),
-                     :href      => node.search("link[rel=alternate]").first["href"],
-                     :id        => node.search("id").first.text,
-                     :stream_id => node.attribute_with_ns("stream-id", GOOGLE_ATOM_NAMESPACE).text)
+      Source.new(:title     => unhtml(node.search("title").first.text),
+                 :href      => node.search("link[rel=alternate]").first["href"],
+                 :id        => node.search("id").first.text,
+                 :stream_id => node.attribute_with_ns("stream-id", GOOGLE_ATOM_NAMESPACE).text)
     end
 
     def liking_users

@@ -34,6 +34,7 @@ describe GoogleReader::Entry, "where the author is known, and the updated timest
   it { subject.href.should == "http://www.depesz.com/index.php/2011/04/27/find-cheapest-combination-of-rooms-in-hotels/" }
   it { subject.should have_known_author }
   it { subject.author.should == "depesz" }
+  it { subject.source.should_not be_nil }
   it { subject.source.id.should == "tag:google.com,2005:reader/feed/http://www.depesz.com/index.php/feed/" }
   it { subject.source.href == "http://www.depesz.com" }
   it { subject.id.should == "tag:google.com,2005:reader/item/d5dee0c34e012ddb" }

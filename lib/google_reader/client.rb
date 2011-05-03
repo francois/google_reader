@@ -39,7 +39,8 @@ module GoogleReader
       tracking-body-link-used).each do |suffix|
 
       method_name = suffix.gsub("-", "_") + "_items"
-      define_method(method_name) do |count=20|
+      define_method(method_name) do |*args|
+        count = args.first || 20
         content = RestClient.get(STATE_URL + suffix + "?n=#{CGI.escape(count.to_s)}", headers)
         parse_atom_feed(content)
       end

@@ -30,6 +30,10 @@ p item.source
 p item.liking_users
 </code></pre>
 
+h2. Ruby Library
+
+google_reader's specifications are certified to run on MRI 1.9.2 and JRuby 1.6.0 (in 1.8 mode).
+
 h2. LICENSE
 
 (The MIT License)
