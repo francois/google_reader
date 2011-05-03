@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<feed xmlns:idx="urn:atom-extension:indexing" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gr="http://www.google.com/schemas/reader/atom/" xmlns="http://www.w3.org/2005/Atom" idx:index="no" gr:dir="ltr">
+  <entry gr:crawl-timestamp-msec="1303995951053">
+    <id gr:original-id="http://www.depesz.com/?p=2149">tag:google.com,2005:reader/item/d5dee0c34e012ddb</id>
+    <category term="user/10212770223479967035/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/>
+    <category term="user/10212770223479967035/state/com.google/tracking-item-link-used" scheme="http://www.google.com/reader/" label="tracking-item-link-used"/>
+    <category term="user/10212770223479967035/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+    <category term="Uncategorized"/>
+    <category term="combinations"/>
+    <category term="cte"/>
+    <category term="postgresql"/>
+    <category term="recursive"/>
+    <category term="stackoverflow"/>
+    <category term="with recursive"/>
+    <title type="html">Find cheapest combination of rooms in hotels &amp; other entries</title>
+    <published>2011-04-27T13:28:53Z</published>
+    <updated>2011-04-27T14:28:53Z</updated>
+    <link rel="alternate" href="http://www.depesz.com/index.php/2011/04/27/find-cheapest-combination-of-rooms-in-hotels/" type="text/html"/>
+    <summary xml:base="http://www.depesz.com/" type="html">Today, on Stack Overflow there was interesting question. Generally, given table that looks like this: room | people | price | hotel 1 | 1 | 200 | A 2 | 2 | 99 | A 3 | 3 | 95 | A 4 | 1 | 90 | B 5 | 6 | 300 [...]&lt;img src="http://feeds.feedburner.com/~r/depesz/~4/5LKjrsu7JnQ" height="1" width="1"&gt;</summary>
+    <author gr:unknown-author="true">
+      <name>(author unknown)</name>
+    </author>
+    <source gr:stream-id="feed/http://www.depesz.com/index.php/feed/">
+      <id>tag:google.com,2005:reader/feed/http://www.depesz.com/index.php/feed/</id>
+      <title type="html">select * from depesz where 1 &lt; 41 and 1 &gt; 41 and &quot;public&quot;.sometable = 'asdf';</title>
+      <link rel="alternate" href="http://www.depesz.com" type="text/html"/>
+    </source>
+    <gr:likingUser>06592066937024742113</gr:likingUser>
+    <gr:likingUser>07355112106994622540</gr:likingUser>
+    <gr:likingUser>09036194539349082984</gr:likingUser>
+  </entry>
+</feed>

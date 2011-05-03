@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<feed xmlns:idx="urn:atom-extension:indexing" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gr="http://www.google.com/schemas/reader/atom/" xmlns="http://www.w3.org/2005/Atom" idx:index="no" gr:dir="ltr">
+  <entry gr:crawl-timestamp-msec="1303995951053">
+    <id>tag:google.com,2005:reader/item/d5dee0c34e012ddb</id>
+  </entry>
+</feed>
