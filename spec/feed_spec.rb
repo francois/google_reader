@@ -20,4 +20,8 @@ describe GoogleReader::Feed do
   it "should have an #udpated_at" do
     subject.updated_at.should == Time.utc(2011, 5, 2, 17, 53, 46)
   end
+
+  it "should provide itself to entries" do
+    subject.entries.first.feed.should == subject
+  end
 end

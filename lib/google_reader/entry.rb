@@ -3,8 +3,11 @@ require "time"
 
 module GoogleReader
   class Entry
-    def initialize(entry)
+    attr_reader :feed
+
+    def initialize(entry, feed)
       @entry = entry
+      @feed  = feed
     end
 
     def hash

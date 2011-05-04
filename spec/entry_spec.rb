@@ -17,8 +17,16 @@ describe GoogleReader::Entry, "where the author is known, and the updated timest
     expected << "09036194539349082984"
   end
 
+  let :feed do
+    Object.new
+  end
+
   subject do
-    GoogleReader::Entry.new(entry)
+    GoogleReader::Entry.new(entry, feed)
+  end
+
+  it "should reference it's feed" do
+    subject.feed.should == feed
   end
 
   it "should be equal to itself" do
@@ -26,11 +34,11 @@ describe GoogleReader::Entry, "where the author is known, and the updated timest
   end
 
   it "should be equal to another entry instance with the same id" do
-    subject.should == GoogleReader::Entry.new(entry)
+    subject.should == GoogleReader::Entry.new(entry, nil)
   end
 
   it "should have the same hash as another instance with the same id" do
-    subject.hash.should == GoogleReader::Entry.new(entry).hash
+    subject.hash.should == GoogleReader::Entry.new(entry, nil).hash
   end
 
   it "should HTML unescape the title" do
@@ -88,7 +96,7 @@ describe GoogleReader::Entry, "where the author is unknown" do
   end
 
   subject do
-    GoogleReader::Entry.new(entry)
+    GoogleReader::Entry.new(entry, nil)
   end
 
   it { subject.should_not have_known_author }
@@ -105,7 +113,7 @@ describe GoogleReader::Entry, "where no users have liked the entry" do
   end
 
   subject do
-    GoogleReader::Entry.new(entry)
+    GoogleReader::Entry.new(entry, nil)
   end
 
   it { subject.liking_users.should be_empty }
@@ -121,7 +129,7 @@ describe GoogleReader::Entry, "when no original ID is present" do
   end
 
   subject do
-    GoogleReader::Entry.new(entry)
+    GoogleReader::Entry.new(entry, nil)
   end
 
   it { subject.original_id.should == subject.id }

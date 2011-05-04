@@ -9,7 +9,7 @@ module GoogleReader
     end
 
     def entries
-      @entries ||= @feed.search("entry").map {|entry| Entry.new(entry)}
+      @entries ||= @feed.search("entry").map {|entry| Entry.new(entry, self)}
     end
 
     def id
