@@ -4,7 +4,22 @@ require "cgi"
 
 module GoogleReader
   class Client
-    def self.authenticate(username, password)
+    def self.authenticate(*args)
+      case args.length
+      when 1
+        authenticate_using_token(args.first)
+      when 2
+        authenticate_using_username_and_password(args.first, args.last)
+      else
+        raise ArgumentError, "Expected either token, or username and password, received #{args.inspect}"
+      end
+    end
+
+    def self.authenticate_using_token(token)
+      new(token)
+    end
+
+    def self.authenticate_using_username_and_password(username, password)
       resp = RestClient.post("https://www.google.com/accounts/ClientLogin",
                              :Email   => username,
                              :Passwd  => password,
@@ -17,13 +32,14 @@ module GoogleReader
       end
 
       token = dict["Auth"]
-      new("Authorization" => "GoogleLogin auth=#{token}", "Accept" => "application/xml")
+      new(token)
     end
 
-    attr_reader :headers
+    attr_reader :token, :headers
 
-    def initialize(headers)
-      @headers = headers
+    def initialize(token)
+      @token   = token
+      @headers = {"Authorization" => "GoogleLogin auth=#{token}", "Accept" => "application/xml"}
     end
 
     BASE_URL = "http://www.google.com/reader/atom/user/-/".freeze

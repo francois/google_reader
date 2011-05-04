@@ -4,7 +4,15 @@ Access your Google Reader account from Ruby:
 
 <pre><code>require "google_reader"
 # Get an instance of a client like this
+# This hits the network to get a token immediately
 client = GoogleReader::Client.authenticate(USERNAME, PASSWORD)
+
+# Save the token to the database, somehow
+client.token
+
+# Alternatively, if you save the token, you can authenticate using
+# the token, which doesn't hit the network
+client = GoogleReader::Client.authenticate(TOKEN)
 
 # Then, call any of these
 client.unread_items
