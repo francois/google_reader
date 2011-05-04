@@ -32,6 +32,13 @@ module GoogleReader
       end
     end
 
+    def summary
+      node = @entry.search("summary")
+      return nil unless node
+      return nil if node.respond_to?(:null?) && node.null?
+      node.text
+    end
+
     def published_at
       Time.parse(@entry.search("published").first.text)
     end

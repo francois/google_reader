@@ -29,6 +29,11 @@ describe GoogleReader::Entry, "where the author is known, and the updated timest
     subject.source.title.should == "select * from depesz where 1 < 41 and 1 > 41 and \"public\".sometable = 'asdf';"
   end
 
+  it "should HTML unescape the summary's content" do
+    unescaped_summary = %(Today, on Stack Overflow there was interesting question. Generally, given table that looks like this: room | people | price | hotel 1 | 1 | 200 | A 2 | 2 | 99 | A 3 | 3 | 95 | A 4 | 1 | 90 | B 5 | 6 | 300 [...]<img src="http://feeds.feedburner.com/~r/depesz/~4/5LKjrsu7JnQ" height="1" width="1">)
+    subject.summary.should == unescaped_summary
+  end
+
   it { subject.published_at.should == Time.utc(2011, 4, 27, 13, 28, 53) }
   it { subject.updated_at.should   == Time.utc(2011, 4, 28, 14, 28, 53) }
   it { subject.href.should == "http://www.depesz.com/index.php/2011/04/27/find-cheapest-combination-of-rooms-in-hotels/" }

@@ -28,6 +28,7 @@ p item.author_unknown?
 p item.author
 p item.source
 p item.liking_users
+p item.summary
 </code></pre>
 
 h2. Ruby Library
