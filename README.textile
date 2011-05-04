@@ -37,6 +37,12 @@ p item.author
 p item.source
 p item.liking_users
 p item.summary
+
+# You may also get feed objects back, which then allow you to query "since" a time
+feed = client.read_feed
+cutoff_at = feed.updated_at
+sleep 30
+client.read_feed(:since => cutoff_at) # Only new items since that cutoff time
 </code></pre>
 
 h2. Ruby Library
