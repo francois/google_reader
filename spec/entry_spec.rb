@@ -21,6 +21,18 @@ describe GoogleReader::Entry, "where the author is known, and the updated timest
     GoogleReader::Entry.new(entry)
   end
 
+  it "should be equal to itself" do
+    subject.should == subject
+  end
+
+  it "should be equal to another entry instance with the same id" do
+    subject.should == GoogleReader::Entry.new(entry)
+  end
+
+  it "should have the same hash as another instance with the same id" do
+    subject.hash.should == GoogleReader::Entry.new(entry).hash
+  end
+
   it "should HTML unescape the title" do
     subject.title.should == "Find cheapest combination of rooms in hotels & other entries"
   end

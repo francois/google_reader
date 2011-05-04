@@ -7,6 +7,14 @@ module GoogleReader
       @entry = entry
     end
 
+    def hash
+      self.id.hash
+    end
+
+    def ==(other)
+      self.id == other.id
+    end
+
     def id
       id_node.text
     end
