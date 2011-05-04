@@ -103,7 +103,5 @@ module GoogleReader
     def unhtml(text)
       text.gsub("&lt;", "<").gsub("&gt;", ">").gsub("&amp;", "&").gsub("&quot;", '"')
     end
-
-    GOOGLE_ATOM_NAMESPACE = "http://www.google.com/schemas/reader/atom/".freeze
   end
 end

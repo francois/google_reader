@@ -54,22 +54,33 @@ module GoogleReader
       tracking-item-link-used
       tracking-body-link-used).each do |suffix|
 
+      method_name = suffix.gsub("-", "_") + "_feed"
+      define_method(method_name) do |*args|
+        options = args.first || Hash.new
+        params = Hash.new
+        params[:n] = options[:count] || 20
+        if options.has_key?(:since) then
+          params[:r]  = "o"
+          params[:ot] = options[:since].to_i
+        end
+
+        str_params = params.map do |k, v|
+          CGI.escape(k.to_s) << "=" << CGI.escape(v.to_s)
+        end.join("&")
+
+        content = RestClient.get(STATE_URL + suffix + "?#{str_params}", headers)
+        Feed.new( Nokogiri::XML(content) )
+      end
+
       method_name = suffix.gsub("-", "_") + "_items"
       define_method(method_name) do |*args|
-        count = args.first || 20
-        content = RestClient.get(STATE_URL + suffix + "?n=#{CGI.escape(count.to_s)}", headers)
-        parse_atom_feed(content)
+        __send__(method_name.sub("_items", "_feed"), *args).entries
       end
     end
 
     def unread_items
       content = RestClient.get(STATE_URL + suffix + "?n=#{CGI.escape(count.to_s)}&xt=#{CGI.escape("state/com.google/read")}", headers)
       parse_atom_feed(content)
-    end
-
-    def parse_atom_feed(feed)
-      doc = Nokogiri::XML(feed)
-      doc.search("entry").map {|entry| Entry.new(entry)}
     end
   end
 end

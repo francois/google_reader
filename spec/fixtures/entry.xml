@@ -1,5 +1,14 @@
 <?xml version="1.0"?>
 <feed xmlns:idx="urn:atom-extension:indexing" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gr="http://www.google.com/schemas/reader/atom/" xmlns="http://www.w3.org/2005/Atom" idx:index="no" gr:dir="ltr">
+  <generator uri="http://www.google.com/reader">Google Reader</generator>
+  <id>tag:google.com,2005:reader/user/10212770223479967035/state/com.google/tracking-item-link-used</id>
+  <title>"tracking-item-link-used" via francois.beausoleil in Google Reader</title>
+  <gr:continuation>CPX6rZKan6gC</gr:continuation>
+  <link rel="self" href="http://www.google.com/reader/atom/user/-/state/com.google/tracking-item-link-used"/>
+  <author>
+    <name>francois.beausoleil</name>
+  </author>
+  <updated>2011-05-02T17:53:46Z</updated>
   <entry gr:crawl-timestamp-msec="1303995951053">
     <id gr:original-id="http://www.depesz.com/?p=2149">tag:google.com,2005:reader/item/d5dee0c34e012ddb</id>
     <category term="user/10212770223479967035/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/>
