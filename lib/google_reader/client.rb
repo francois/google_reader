@@ -42,6 +42,10 @@ module GoogleReader
       @headers = {"Authorization" => "GoogleLogin auth=#{token}", "Accept" => "application/xml"}
     end
 
+    def logger=(value)
+      RestClient.log = value
+    end
+
     BASE_URL = "http://www.google.com/reader/atom/user/-/".freeze
     STATE_URL = BASE_URL + "state/com.google/".freeze
 
