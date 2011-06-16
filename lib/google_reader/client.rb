@@ -47,6 +47,7 @@ module GoogleReader
 
     %w(
       read
+      fresh
       broadcast
       starred
       subscriptions
