@@ -54,6 +54,7 @@ module GoogleReader
       fresh
       broadcast
       starred
+      reading-list
       subscriptions
       tracking-emailed
       tracking-item-link-used
@@ -61,18 +62,7 @@ module GoogleReader
 
       method_name = suffix.gsub("-", "_") + "_feed"
       define_method(method_name) do |*args|
-        options = args.first || Hash.new
-        params = Hash.new
-        params[:n] = options[:count] || 20
-        if options.has_key?(:since) then
-          params[:r]  = "o"
-          params[:ot] = options[:since].to_i
-        end
-
-        str_params = params.map do |k, v|
-          CGI.escape(k.to_s) << "=" << CGI.escape(v.to_s)
-        end.join("&")
-
+        str_params = options_to_query_string( args.first || Hash.new )
         content = RestClient.get(STATE_URL + suffix + "?#{str_params}", headers)
         Feed.new( Nokogiri::XML(content) )
       end
@@ -83,9 +73,25 @@ module GoogleReader
       end
     end
 
-    def unread_items
-      content = RestClient.get(STATE_URL + suffix + "?n=#{CGI.escape(count.to_s)}&xt=#{CGI.escape("state/com.google/read")}", headers)
-      parse_atom_feed(content)
+    def unread_items(options={})
+      reading_list_feed(options)
+    end
+
+    private
+
+    def options_to_query_string(options)
+      params = Hash.new
+      params[:n] = options[:count] || 20
+      params[:xt] = options.fetch(:exclude) if options.has_key?(:exclude)
+
+      if options.has_key?(:since) then
+        params[:r]  = "o"
+        params[:ot] = options[:since].to_i
+      end
+
+      params.map do |k, v|
+        CGI.escape(k.to_s) << "=" << CGI.escape(v.to_s)
+      end.join("&")
     end
   end
 end
